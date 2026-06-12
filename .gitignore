@@ -18,6 +18,8 @@ coverage
 # Env file
 .env*.local
 
+.env
+
 # report files
 report*.json
 
