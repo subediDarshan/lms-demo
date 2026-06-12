@@ -1,11 +1,9 @@
 import { Course } from "@courselit/common-models";
-import { Caption, Header1, Section } from "@courselit/page-primitives";
+import { Caption, Header1, Section, Text2 } from "@courselit/page-primitives";
 import { formattedLocaleDate, getFullSiteSetup } from "@ui-lib/utils";
 import { getAddressFromHeaders } from "@/app/actions";
 import { headers } from "next/headers";
-import { ProductWithAdminProps } from "@/hooks/use-product";
-import { FetchBuilder } from "@courselit/utils";
-import { Text2 } from "@courselit/page-primitives";
+import { getProduct } from "./helpers";
 import Link from "next/link";
 import { truncate } from "@ui-lib/utils";
 import Image from "next/image";
@@ -105,46 +103,3 @@ export default async function ProductPage(props: {
         </Section>
     );
 }
-
-export const getProduct = async (
-    backend: string,
-    id: string,
-): Promise<ProductWithAdminProps | undefined> => {
-    const query = `
-        query ($id: String!) {
-            course: getCourse(id: $id) {
-                title
-                description
-                type
-                slug
-                courseId
-                featuredImage {
-                    file
-                    thumbnail
-                    caption
-                },
-                updatedAt
-                user {
-                    name
-                    avatar {
-                        file
-                        thumbnail
-                        caption
-                    }
-                }
-            }
-        }
-    `;
-    const fetch = new FetchBuilder()
-        .setUrl(`${backend}/api/graph`)
-        .setPayload({ query, variables: { id } })
-        .setIsGraphQLEndpoint(true)
-        .build();
-
-    try {
-        const response = await fetch.exec();
-        return response.course;
-    } catch (e: any) {
-        console.log("Error fetching product", e.message); // eslint-disable-line no-console
-    }
-};
