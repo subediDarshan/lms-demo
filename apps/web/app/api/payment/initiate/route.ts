@@ -234,12 +234,12 @@ export async function POST(req: NextRequest) {
     }
 }
 
-export async function getDomain(domainName: string | null) {
+async function getDomain(domainName: string | null) {
     if (!domainName) return null;
     return await DomainModel.findOne<Domain>({ name: domainName });
 }
 
-export async function getUser(session: any, domainId: mongoose.Types.ObjectId) {
+async function getUser(session: any, domainId: mongoose.Types.ObjectId) {
     if (!session) return null;
     return await User.findOne({
         email: session.user!.email,
