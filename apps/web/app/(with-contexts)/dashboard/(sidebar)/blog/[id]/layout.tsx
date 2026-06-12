@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { EDIT_BLOG } from "@ui-config/strings";
 
 export async function generateMetadata(
-    { params }: { params: any },
+    _props: unknown,
     parent: ResolvingMetadata,
 ): Promise<Metadata> {
     return {

@@ -2,7 +2,7 @@ import { Metadata, ResolvingMetadata } from "next";
 import { EDIT_EMAIL } from "@ui-config/strings";
 
 export async function generateMetadata(
-    { params }: { params: any },
+    _props: unknown,
     parent: ResolvingMetadata,
 ): Promise<Metadata> {
     return {

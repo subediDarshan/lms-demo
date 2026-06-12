@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { PAGE_HEADER_ALL_POSTS } from "@ui-config/strings";
 
 export async function generateMetadata(
-    { params }: { params: any },
+    _props: unknown,
     parent: ResolvingMetadata,
 ): Promise<Metadata> {
     return {
