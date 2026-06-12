@@ -1,0 +1,7 @@
+[build]
+  base = "."
+  command = "pnpm --filter './packages/**' run build && pnpm --filter @courselit/web build"
+  publish = "apps/web/.next"
+
+[build.environment]
+  NODE_VERSION = "20"
