@@ -10,7 +10,7 @@ const remotePatterns = [
 ];
 
 const nextConfig = {
-    output: "standalone",
+    ...(process.env.NETLIFY ? {} : { output: "standalone" }),
     env: {
         version,
     },
